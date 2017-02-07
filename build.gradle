@@ -31,4 +31,6 @@ dependencies {
 	compile "org.apache.httpcomponents:httpclient:4.5.2"
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	// https://mvnrepository.com/artifact/net.imagej/ij
+	compile group: 'net.imagej', name: 'ij', version: '1.51h'
 }
