@@ -3,11 +3,14 @@ package com.example.train;
 import com.example.util.ClearImageHelper;
 import com.example.util.HttpUtil;
 import com.example.util.ImageUtil;
+import ij.process.ColorProcessor;
+import ij.process.ImageProcessor;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.util.ImageHelper;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +52,7 @@ public class Home {
     public static void index1() {
         try {
             String path = "C:\\Users\\Administrator\\Desktop\\identy";
-            File file = new File(path, "5001_14_070256260D73F10019.gif");
+            File file = new File(path, "5001_14_070234010ADD281834.gif");
             BufferedImage image = ImageIO.read(file);
             //逆向旋转
             image = ImageUtil.Rotate270Degree(image);
@@ -64,29 +67,22 @@ public class Home {
 
             int height = image0.getHeight();
             int width = image0.getWidth();
-            for (int i = 0; i < width; i++) {
+            /*for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
                     int rgb = image0.getRGB(i, j);
-                    int r = (int) (((rgb >> 16) & 0xFF) * 1.1 + 30);
-                    int g = (int) (((rgb >> 8) & 0xFF) * 1.1 + 30);
-                    int b = (int) (((rgb >> 0) & 0xFF) * 1.1 + 30);
-                    if (r >= 255) {
-                        r = 255;
-                    }
-                    if (g >= 255) {
-                        g = 255;
-                    }
-                    if (b >= 255) {
-                        b = 255;
-                    }
-                    if (r + g + b > 620) {
-                        image0.setRGB(i, j, rgb & 0xFF0000);
+                    int r = ((rgb >> 16) & 0xFF);
+                    int g = ((rgb >> 8) & 0xFF);
+                    int b = ((rgb >> 0) & 0xFF);
+                    if (r + g + b > 600) {
+                        image0.setRGB(i, j, 0xFFFFFF);
                     } else {
-                        image0.setRGB(i, j, rgb & 0x00FFFF);
+                        image0.setRGB(i, j, 0x000000);
                     }
                 }
-            }
-
+            }*/
+            ColorProcessor processor = new ColorProcessor(image0);
+            processor.findEdges();
+            image0 = (BufferedImage) processor.createImage();
             File file0 = new File(UUID.randomUUID().toString() + ".jpg");
             ImageIO.write(image0, "jpg", file0);
             ITesseract instance = new Tesseract();
@@ -117,7 +113,7 @@ public class Home {
     }
 
     public static void main(String[] args) {
-        index();
+        index1();
     }
 
     public static void hehe() {
