@@ -2,7 +2,7 @@
 
 ## package com.example.train
 ## a simple demo with tess4j
-
+简单的使用tess4j识别数字，使用imagej进行图像预处理（todo）
 ## package com.example.arithmetic
 ## a simple demo for genetic algorithm       referenc--遗传算法入门
 本demo模拟迷宫中寻找出口。
